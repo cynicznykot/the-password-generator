@@ -8,6 +8,7 @@ import sys
 
 
 def greed():
+    # Welcome func
     print("\n" + "=" * 50)
     print("🔑 Welcome to the 'Personal Password Generator'!")
     print("=" * 50)
@@ -17,6 +18,7 @@ def greed():
 
 
 def get_number(prompt):
+    # User input validation func
     while True:
         try:
             user_length = int(input(prompt))
@@ -24,15 +26,20 @@ def get_number(prompt):
                 print("⚠️ Warning! The your password is too short!")
                 print("🛡️ The password must be at least 5 characters long!")
                 continue
+            if user_length > 35:
+                print("⚠️ Warning! The password is too long!")
+                print("🛡️ The password must be at least 35 characters long!")
+                continue
             return user_length
         except ValueError:
             print("❌ Error! Please enter a number!")
 
 
-# --- 2. APP LOGIC
+# --- 2. APP LOGIC ---
 
 
 def get_character_options():
+    # User-selectable password setting func
     user_letters = input("Include letters? (y/n): ").lower() == 'y'
     user_digits = input("Include digits? (y/n): ").lower() == 'y'
     user_symbols = input("Include symbols? (y/n): ").lower() == 'y'
@@ -40,6 +47,7 @@ def get_character_options():
 
 
 def build_character_pool(user_letters, user_digits, user_symbols):
+    # Function to add a password to a variable
     characters = ""
     if user_letters:
         characters += string.ascii_letters
@@ -51,6 +59,7 @@ def build_character_pool(user_letters, user_digits, user_symbols):
 
 
 def generate_password(length, character_pool):
+    # Password generation func
     if not character_pool:
         print("❌ Error! No characters selected!")
         return None
@@ -58,6 +67,7 @@ def generate_password(length, character_pool):
 
 
 def generate_again():
+    # Repeat func
     user_answer = input("Do you want to generate another password? (y/n): ").lower()
     possitive = ['y', 'yes', 'yeah', 'da', 'd', 'a']
     negative = ['n', 'no', 'not', 'net', 'nope']
@@ -71,10 +81,11 @@ def generate_again():
         return generate_again()
 
 
-# --- 3. MAIN FUNC
+# --- 3. MAIN FUNC ---
 
 
 def main():
+    # Main func
     while True:
         greed()
         user_length = get_number("Enter your password length: ")
@@ -95,7 +106,9 @@ def main():
         print("=" * 50)
 
         if not generate_again():
+            print("\n" + "=" * 55)
             print("👋 Thank you for using my Password Generator! Goodbye!")
+            print("=" * 55)
             break
 
         else:
