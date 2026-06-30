@@ -2,6 +2,7 @@ import random
 import string
 import time
 import sys
+import secrets
 
 
 # --- 1. AUXILIARY FUNCTIONS ---
@@ -22,9 +23,9 @@ def get_number(prompt):
     while True:
         try:
             user_length = int(input(prompt))
-            if user_length < 5:
+            if user_length < 8:
                 print("⚠️ Warning! The your password is too short!")
-                print("🛡️ The password must be at least 5 characters long!")
+                print("🛡️ The password must be at least 8 characters long!")
                 continue
             if user_length > 35:
                 print("⚠️ Warning! The password is too long!")
