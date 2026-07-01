@@ -1,5 +1,6 @@
 import tkinter as tk
 from tkinter import ttk
+from tkinter import filedialog
 from generator import build_character_pool, generate_password
 
 
@@ -45,6 +46,38 @@ def main():
             root.after(2000, lambda: password_var.set(password))
 
 
+    def save_password():
+        password = password_var.get()
+        service = entry_service.get().strip()
+
+        if not password:
+            password_var.set("⚠️ Generate a password first!")
+            return
+
+        if not service:
+            password_var.set("⚠️ Enter a service name!")
+
+        # File selection dialog
+        file_path = filedialog.asksaveasfilename(
+            title="Save password file",
+            defaultextension=".txt",
+            filetypes=[("Text files", "*.txt"), ("All files", "*.*")],
+            initialfile="password.txt" # Default name for the file
+        )
+
+        # If the user clicked cancel - we exit
+        if not file_path:
+            return
+
+        # Saving to the selected file
+        with open(file_path, "a", encoding="utf-8") as file:
+            file.write(f"Service: {service} | Password: {password}\n")
+
+        password_var.set(f"✅ Saved to: {file_path}")
+        entry_service.delete(0, tk.END)
+        root.after(2000, lambda: password_var.set(password))
+
+
     # ---- INTERFACE ELEMENTS ----
 
     # Length mark
@@ -64,6 +97,14 @@ def main():
 
     check_symbols = tk.Checkbutton(root, text="Use Symbols", variable=use_symbols, font=("Arial", 13))
     check_symbols.pack(pady=5)
+
+    # Your service name
+
+    label_service = tk.Label(root, text="Your Service name:", font=("Arial", 15))
+    label_service.pack(pady=5)
+
+    entry_service = tk.Entry(root, width=40, font=("Arial", 15))
+    entry_service.pack(pady=5)
 
     # Button
     button = tk.Button(root, text="Generate Password", command=on_generate, font=("Arial", 17))
@@ -86,6 +127,19 @@ def main():
         pady=5,
     )
     copy_button.pack(pady=5)
+
+    save_button = tk.Button(
+        root,
+        text="💾 Save the password to file",
+        command=save_password,
+        font=("Arial", 12),
+        bg="#FF9800",
+        fg="white",
+        padx=15,
+        pady=5,
+    )
+
+    save_button.pack(pady=5)
 
     # Launch window
     root.mainloop()
