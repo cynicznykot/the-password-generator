@@ -7,7 +7,7 @@ def main():
     # Create a window
     root = tk.Tk()
     root.title("Your Personal Password Generator")
-    root.geometry("800x700")
+    root.geometry("700x600")
 
     # Create variables
     length_var = tk.IntVar(value=16)
@@ -37,29 +37,31 @@ def main():
 
     # ---- INTERFACE ELEMENTS ----
     # Length mark
-    Label_length = tk.Label(root, text="Length Password:", font=("Arial", 12))
+    Label_length = tk.Label(root, text="Length Password:", font=("Arial", 15))
     Label_length.pack(pady=5)
 
     # Slider
-    scale = tk.Scale(root, from_=15, to=64, orient="horizontal", variable=length_var, length=400)
+    scale = tk.Scale(root, from_=15, to=64, orient="horizontal", variable=length_var, length=500)
     scale.pack(pady=5)
 
     # Checkboxes
-    check_letters = tk.Checkbutton(root, text="Check Letters", variable=use_letters)
+    check_letters = tk.Checkbutton(root, text="Use Letters", variable=use_letters, font=("Arial", 13))
     check_letters.pack(pady=5)
 
-    check_digits = tk.Checkbutton(root, text="Check Digits", variable=use_digits)
+    check_digits = tk.Checkbutton(root, text="Use Digits", variable=use_digits, font=("Arial", 13))
     check_digits.pack(pady=5)
 
-    check_symbols = tk.Checkbutton(root, text="Check Symbols", variable=use_symbols)
+    check_symbols = tk.Checkbutton(root, text="Use Symbols", variable=use_symbols, font=("Arial", 13))
     check_symbols.pack(pady=5)
 
     # Button
-    button = tk.Button(root, text="Generate Password", command=on_generate)
+    button = tk.Button(root, text="Generate Password", command=on_generate, font=("Arial", 17))
     button.pack(pady=5)
 
     # Password field
-    entry = tk.Entry(root, textvariable=password_var, width=50)
+    entry = tk.Entry(root, textvariable=password_var, width=70, font=("Arial", 12), justify="center")
+    entry.pack(pady=15)
+    entry.pack(pady=15)
     entry.pack()
 
     # Launch window
