@@ -1,7 +1,7 @@
 import tkinter as tk
 from tkinter import ttk
 from tkinter import filedialog
-from generator import build_character_pool, generate_password, check_strength
+from src.generator import build_character_pool, generate_password, check_strength
 
 
 def main():
