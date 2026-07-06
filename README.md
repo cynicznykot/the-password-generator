@@ -1,10 +1,13 @@
 # 🔐 Персональный Генератор Паролей
 
-Простое и безопасное приложение с графическим интерфейсом для генерации надежных паролей, их оценки и удобного сохранения.
+**Безопасное и удобное приложение для генерации паролей с графическим интерфейсом, индикатором сложности и сохранением в файл.**
 
-![Python](https://img.shields.io/badge/Python-3.8+-blue.svg)
-![License](https://img.shields.io/badge/License-MIT-green.svg)
-![Platform](https://img.shields.io/badge/Platform-Windows%20%7C%20macOS%20%7C%20Linux-lightgrey.svg)
+[![Python](https://img.shields.io/badge/Python-3.8+-blue.svg)](https://python.org)
+[![License](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
+[![Tests](https://img.shields.io/badge/Tests-pytest-brightgreen.svg)](tests/)
+[![Platform](https://img.shields.io/badge/Platform-Linux%20%7C%20Windows%20%7C%20macOS-lightgrey.svg)]()
+
+---
 
 ## 📖 Оглавление
 
@@ -15,6 +18,7 @@
 - [Структура проекта](#структура-проекта)
 - [Запуск тестов](#запуск-тестов)
 - [Технологии](#технологии)
+- [Планы по развитию](#планы-по-развитию)
 - [Лицензия](#лицензия)
 - [Автор](#автор)
 
@@ -22,52 +26,99 @@
 
 ## О проекте
 
-"Персональный Генератор Паролей" — это десктопное приложение, созданное для генерации криптографически безопасных паролей. Оно помогает пользователям создавать сложные пароли, оценивать их надежность и сохранять в удобном формате, чтобы больше никогда не забывать их.
+**"Персональный Генератор Паролей"** — это десктопное приложение на Python с графическим интерфейсом для генерации криптографически безопасных паролей.
 
-Проект создан с фокусом на **безопасность** и **удобство** использования для обычного пользователя.
+Приложение позволяет:
+- Генерировать пароли с настраиваемой длиной и набором символов
+- Оценивать их сложность в реальном времени
+- Сохранять пароли с указанием сервиса и логина
+
+Проект создан для практики:
+- Разработки **GUI** на `tkinter`
+- **Криптографической безопасности** с модулем `secrets`
+- **Модульного тестирования** с `unittest` и `pytest`
+- Организации структуры проекта и работы с **Git**
 
 ---
 
-## Возможности
+## ✨ Возможности
 
-- **Графический интерфейс (`tkinter`)**: Интуитивно понятное окно с настройками.
-- **Криптографическая безопасность (`secrets`)**: Генерация непредсказуемых паролей.
-- **Гибкая настройка**:
-  - Выбор длины пароля (от 16 до 64 символов).
-  - Выбор типов символов: буквы, цифры, специальные символы.
-- **Индикатор сложности**: Визуальная оценка пароля (Небезопасный / Умеренный / Очень сильный).
-- **Удобное сохранение**:
-  - Ввод названия сервиса и логина/почты.
-  - Сохранение в текстовый файл с возможностью выбора места.
-- **Буфер обмена**: Мгновенное копирование сгенерированного пароля.
-- **Модульное тестирование**: Код покрыт тестами для обеспечения надежности.
+- 🖥️ **Графический интерфейс** — интуитивное окно на `tkinter`
+- 🔐 **Безопасная генерация** — используется модуль `secrets` (криптостойкий)
+- 📏 **Настройка длины** — от 16 до 64 символов
+- 🔤 **Выбор символов** — буквы, цифры, специальные символы
+- 📊 **Индикатор сложности** — `Небезопасный` / `Умеренный` / `Очень сильный`
+- 📋 **Копирование в буфер** — одно нажатие с визуальным подтверждением
+- 💾 **Сохранение в файл** — пароль + сервис + логин/почта
+- 📁 **Выбор места сохранения** — пользователь выбирает папку и имя файла
+- ✅ **Тесты** — 25 unit-тестов с `pytest`
+- 🖥️ **Кроссплатформенность** — работает на Windows, Linux и macOS
 
 ---
 
 ## Как использовать
 
-1.  **Запустите приложение**.
-2.  Настройте параметры пароля:
-    - Передвиньте ползунок для выбора длины.
-    - Отметьте нужные типы символов (буквы, цифры, символы).
-3.  Нажмите кнопку **"Generate Password"**.
-4.  Оцените индикатор сложности под полем пароля.
-5.  Нажмите **"Copy to clipboard"**, чтобы скопировать пароль.
-6.  Введите название сервиса и логин, затем нажмите **"Save the password to file"**.
-7.  Выберите место сохранения файла.
+### Генерация пароля
+
+1. **Установите длину** с помощью ползунка (16–64 символа)
+2. **Выберите типы символов**:
+   - ☑️ Буквы
+   - ☑️ Цифры
+   - ☑️ Символы
+3. Нажмите **"Generate Password"**
+4. Пароль появится в поле с **индикатором сложности** под ним
+
+### Копирование пароля
+
+- Нажмите **"📋 Copy to clipboard"** — пароль скопируется, появится подтверждение
+
+### Сохранение пароля
+
+1. **Введите название сервиса** (например, `Google`)
+2. **Введите логин или почту** (например, `user@gmail.com`)
+3. Нажмите **"💾 Save the password to file"**
+4. **Выберите место и имя файла** (по умолчанию: `passwords.txt`)
+5. Запись сохраняется в формате: Service: Google | Login/email: user@gmail.com | Password: P@ssw0rd!
+
+### Пример работы
+
+Ваш интерфейс будет выглядеть так:
+
+┌─────────────────────────────────────────────────────────┐
+│ 🔐 Your Personal Password Generator │
+│ ───────────────────────────────────────────────────── │
+│ Length Password: [=========●=========] 32 │
+│ ☑ Use Letters │
+│ ☑ Use Digits │
+│ ☑ Use Symbols │
+│ Your Service name: [Google ] │
+│ Your mail or login: [user@gmail.com] │
+│ [ 🎲 Generate Password ] │
+│ ┌─────────────────────────────────────────────────┐ │
+│ │ P@ssw0rd!2024Secure# │ │
+│ └─────────────────────────────────────────────────┘ │
+│ 🟢 Very Strong! │
+│ [ 📋 Copy to clipboard ] │
+│ [ 💾 Save the password to file ] │
+└─────────────────────────────────────────────────────────┘
 
 ---
 
 ## Быстрый старт
 
+### Требования
+
+- **Python 3.8** или выше
+- `pip` (менеджер пакетов Python)
+
 ### Установка
 
 ```bash
 # Клонируйте репозиторий
-git clone https://github.com/cynicznykot/the-password-generator.git
+git clone https://github.com/cynicznykot/PasswordGenerator.git
 
 # Перейдите в папку проекта
-cd the-password-generator
+cd PasswordGenerator
 
 # Создайте виртуальное окружение (рекомендуется)
 python -m venv .venv
@@ -80,3 +131,129 @@ source .venv/bin/activate
 
 # Установите зависимости
 pip install -r requirements.txt
+```
+### Запуск приложения
+
+```bash
+# Через модуль Python
+python -m src.main
+
+# Или напрямую через файл
+python src/main.py
+```
+
+### Возможные проблемы на Linux
+```bash
+# Ubuntu/Debian
+sudo apt install python3-tk
+
+# Fedora
+sudo dnf install python3-tkinter
+```
+
+## Структура проекта
+```bash
+PasswordGenerator/
+├── src/                   # Исходный код
+│   ├── __init__.py        # Пакетный файл
+│   ├── generator.py       # Логика генерации и проверки
+│   ├── gui.py             # Графический интерфейс (tkinter)
+│   └── main.py            # Точка входа
+├── tests/                 # Тесты
+│   ├── __init__.py
+│   ├── test_generator.py  # 25 тестов для логики
+│   └── test_gui.py        # 8 тестов для GUI (пропущены)
+├── images/                # Скриншоты для README
+├── .gitignore             # Игнорируемые файлы Git
+├── LICENSE                # Лицензия MIT
+├── README.md              # Документация (русский)
+├── README.en.md           # Документация (английский)
+└── requirements.txt       # Зависимости
+```
+
+## Запуск тестов
+
+### Установка зависимостей для разработки 
+```bash
+pip install -r requirements-dev.txt
+```
+
+### Запуск тестов
+```bash
+# Запустить все тесты
+pytest tests/ -v
+
+# Запустить с покрытием кода
+pytest tests/ --cov=src --cov-report=html
+
+# Запустить конкретный тест
+pytest tests/test_generator.py -v
+```
+
+### Результаты тестов
+```bash
+============================= test session starts ==============================
+collected 25 items
+
+tests/test_generator.py::TestBuildCharacterPool::test_all_types PASSED
+tests/test_generator.py::TestBuildCharacterPool::test_digits_only PASSED
+tests/test_generator.py::TestBuildCharacterPool::test_letters_and_digits PASSED
+tests/test_generator.py::TestBuildCharacterPool::test_letters_only PASSED
+tests/test_generator.py::TestBuildCharacterPool::test_no_types PASSED
+tests/test_generator.py::TestBuildCharacterPool::test_symbols_only PASSED
+tests/test_generator.py::TestGeneratePassword::test_empty_pool PASSED
+tests/test_generator.py::TestGeneratePassword::test_length_16 PASSED
+tests/test_generator.py::TestGeneratePassword::test_length_30 PASSED
+tests/test_generator.py::TestGeneratePassword::test_length_64 PASSED
+tests/test_generator.py::TestGeneratePassword::test_pool_with_digits_only PASSED
+tests/test_generator.py::TestGeneratePassword::test_pool_with_letters_only PASSED
+tests/test_generator.py::TestGeneratePassword::test_randomness PASSED
+tests/test_generator.py::TestGeneratePassword::test_zero_length PASSED
+tests/test_generator.py::TestCheckStrength::test_empty PASSED
+tests/test_generator.py::TestCheckStrength::test_moderate_letters_and_digits_16 PASSED
+tests/test_generator.py::TestCheckStrength::test_moderate_letters_and_symbols_16 PASSED
+tests/test_generator.py::TestCheckStrength::test_score_2 PASSED
+tests/test_generator.py::TestCheckStrength::test_score_3 PASSED
+tests/test_generator.py::TestCheckStrength::test_score_5 PASSED
+tests/test_generator.py::TestCheckStrength::test_strong_all_types_16 PASSED
+tests/test_generator.py::TestCheckStrength::test_strong_long_all_types_30 PASSED
+tests/test_generator.py::TestCheckStrength::test_weak_only_digits_16 PASSED
+tests/test_generator.py::TestCheckStrength::test_weak_only_lowercase_16 PASSED
+tests/test_generator.py::TestCheckStrength::test_weak_short PASSED
+
+============================= 25 passed in 0.03s ==============================
+```
+### Технологии
+
+- **Python 3.8+** — язык программирования
+- **Tkinter** — графический интерфейс
+- **Secrets** — криптографическая безопасность
+- **Unittest / Pytest** — тестирование
+- **Git** — контроль версий
+
+### Планы по развитию
+
+- [ ] Добавить просмотр сохранённых паролей
+- [ ] Реализовать поиск по сервисам
+- [ ] Добавить шифрование файла с паролями
+- [ ] Создать автоматическую проверку обновлений
+- [ ] Собрать `.exe` для Windows
+
+### Лицензия
+
+Распространяется под лицензией **MIT**. См. файл [LICENSE](LICENSE) для подробностей.
+
+## Автор
+
+**CynicznyKot**
+
+- GitHub: [@cynicznykot](https://github.com/cynicznykot)
+- Проект: [PasswordGenerator](https://github.com/cynicznykot/PasswordGenerator)
+
+---
+
+## Поддержите проект
+
+Если вам понравился мой небольшой проект, поставьте ⭐ на GitHub! Буду очень благодарен! 
+
+
