@@ -4,6 +4,9 @@ The password generator app.
 A small application that allows you to generate a password of any complexity using a user-friendly
 graphical interface with accessible settings and save it in a convenient 'txt' file so you don't forget
 your social media passwords.
+
+This module contains the core logic for generating password, evaluating their strength,
+and it's used by both the CLI and the GUI versions of the application.
 """
 
 
@@ -200,8 +203,9 @@ def main():
                 print(".", end="", flush=True)
 
 
-# This code will be removed in the future.
-# It was added to test code within a file without connecting the interface.
+# If you want to run the code directly, uncomment the lines below.
+# In this case, you will not have access to the graphical interface,
+# its settings, or the file-saving feature.
 
 # if __name__ == "__main__":
 #     main()
