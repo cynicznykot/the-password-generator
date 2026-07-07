@@ -1,6 +1,9 @@
-"""Entry point for the app."""
+"""Entry point for the Password Generator application.
 
-from gui import main
+This module simply imports and runs the GUI main function.
+"""
+
+from src.gui import main
 
 if __name__ == "__main__":
     main()
