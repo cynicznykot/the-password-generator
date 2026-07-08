@@ -13,6 +13,7 @@ The GUI interacts with the generator module for all core logic.
 import json
 import urllib.request
 import tkinter as tk
+import webbrowser
 from tkinter import ttk
 from tkinter import filedialog
 from tkinter import messagebox
@@ -22,7 +23,7 @@ from src.config import APP_VERSION, GITHUB_API_URL
 
 def check_for_updates():
     try:
-        url = "https://api.github.com/repos/cynicznykot/PasswordGenerator/releases/latest"
+        url = GITHUB_API_URL
         response = urllib.request.urlopen(url)
         data = response.read()
         text = data.decode('utf-8')
@@ -30,13 +31,17 @@ def check_for_updates():
         latest_version = json_data['tag_name']
 
         if latest_version != APP_VERSION:
-            messagebox.showinfo(
+            result = messagebox.askokcancel(
                 "Update available!",
-                f"Version {latest_version} is already available.\nDownload it from GitHub."
+                f"Version {latest_version} is already available.\nDo you want to open "
+                f"the download page?"
             )
-
+            if result:
+                import webbrowser
+                webbrowser.open("https://github.com/cynicznykot/PasswordGenerator/releases/latest")
     except Exception:
         pass
+
 
 def main():
     # Create a Window
