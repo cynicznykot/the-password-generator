@@ -123,7 +123,12 @@ def main():
             style.configure('TCheckbutton', background='white', foreground='black')
             style.configure('TButton', background='white', foreground='black')
             style.configure('TLabel', background='white', foreground='black')
+            length_label.config(background='white', foreground='black')
             style.configure('TEntry', fieldbackground='white')
+
+            scale.config(background='white', foreground='#1e1e1e', troughcolor='lightgray')
+
+            style.map('TCheckbutton', background=[('active', 'white'), ('selected', 'white')])
 
             strength_label.config(background='white', foreground='black')
             copy_button.config(background='#2196F3', foreground='white')
@@ -136,7 +141,8 @@ def main():
             style.configure('TFrame', background='#1e1e1e', borderwidth=0, relief='flat')
             style.configure('TCheckbutton', background='#1e1e1e', foreground='white')
             style.configure('TLabel', background='#1e1e1e', foreground='white')
-            style.configure('TEntry', fieldbackground='#2d2d2d', foreground='white', insertcolor='white')
+            length_label.config(background='#1e1e1e', foreground='white')
+            style.configure('TEntry', fieldbackground='#2d2d2d', foreground='white', insertcolor='white', highlightthickness=0)
 
             # Scale
             scale.config(background='#1e1e1e', foreground='white', troughcolor='#2b2b2b')
@@ -155,7 +161,15 @@ def main():
 
     def toggle_theme():
         # Func change theme
-        pass
+        theme_var.get()
+        if theme_var.get() == "light":
+            theme_var.set('dark')
+            apply_theme('dark')
+            theme_toggle.config(text="☀️ Light Theme")
+        else:
+            theme_var.set('light')
+            apply_theme('light')
+            theme_toggle.config(text="🌙 Dark Theme")
 
 
     def save_password():
@@ -201,9 +215,27 @@ def main():
     ttk.Label(main_frame, text="Length Password:").pack(anchor='center')
 
     # Slider
-    scale = tk.Scale(main_frame, from_=16, to=64, orient="horizontal", variable=length_var, length=400, resolution=1)
-    scale.pack(fill='x', pady=(0, 10))
-    ttk.Label(main_frame, textvariable=length_var, font=('Arial', 12)).pack()
+    scale = tk.Scale(
+        main_frame,
+        from_=16,
+        to=64,
+        orient="horizontal",
+        variable=length_var,
+        length=400,
+        resolution=1,
+        highlightthickness=0,
+        troughcolor='lightgray'
+    )
+    scale.pack(pady=(0, 10))
+
+    length_label = tk.Label(
+        main_frame,
+        textvariable=length_var,
+        font=("Arial", 12),
+        bg='white',
+        fg='black',
+    )
+    length_label.pack()
 
     # Checkboxes
     ttk.Checkbutton(main_frame, text="Use Letters", variable=use_letters).pack(anchor='w')
@@ -297,7 +329,7 @@ def main():
     save_button.pack(pady=5)
 
     # Button Theme
-    top_frame = tk.Frame(main_frame, borderwidth=0, highlightthickness=0, bg='#1e1e1e')
+    top_frame = tk.Frame(main_frame, borderwidth=0, highlightthickness=0, bg='white')
     top_frame.pack(fill='x', pady=(0, 15))
 
     theme_toggle = tk.Button(
@@ -313,7 +345,6 @@ def main():
     theme_toggle.pack(side='right', padx=5)
 
     # Launch Window
-    apply_theme('dark')
     root.mainloop()
 
 
