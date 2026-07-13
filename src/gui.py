@@ -166,20 +166,20 @@ def main():
         style = ttk.Style()
 
         if theme == 'light':
-            top_frame.config(bg='lightgray')
-            root.configure(background='lightgray')
-            style.configure('TFrame', background='lightgray')
-            style.configure('TCheckbutton', background='lightgray', foreground='black')
-            style.configure('TButton', background='lightgray', foreground='black')
-            style.configure('TLabel', background='lightgray', foreground='black')
-            length_label.config(background='lightgray', foreground='black')
-            style.configure('TEntry', fieldbackground='lightgray')
+            top_frame.config(bg='#f0f0f0')
+            root.configure(background='#f0f0f0')
+            style.configure('TFrame', background='#f0f0f0')
+            style.configure('TCheckbutton', background='#f0f0f0', foreground='black')
+            style.configure('TButton', background='#f0f0f0', foreground='black')
+            style.configure('TLabel', background='#f0f0f0', foreground='black')
+            length_label.config(background='#f0f0f0', foreground='black')
+            style.configure('TEntry', fieldbackground='#f0f0f0')
 
-            scale.config(background='lightgray', foreground='#1e1e1e', troughcolor='lightgray')
+            scale.config(background='#f0f0f0', foreground='#1e1e1e', troughcolor='lightgray')
 
-            style.map('TCheckbutton', background=[('active', 'lightgray'), ('selected', 'lightgray')])
+            style.map('TCheckbutton', background=[('active', '#f0f0f0'), ('selected', '#f0f0f0')])
 
-            strength_label.config(background='lightgray', foreground='black')
+            strength_label.config(background='#f0f0f0', foreground='black')
             copy_button.config(background='#2196F3', foreground='white')
             save_button.config(background='#FF9800', foreground='white')
             main_frame.configure(style="TFrame")
