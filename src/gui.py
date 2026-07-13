@@ -143,20 +143,20 @@ def main():
         style = ttk.Style()
 
         if theme == 'light':
-            top_frame.config(bg='white')
-            root.configure(background='white')
-            style.configure('TFrame', background='white')
-            style.configure('TCheckbutton', background='white', foreground='black')
-            style.configure('TButton', background='white', foreground='black')
-            style.configure('TLabel', background='white', foreground='black')
-            length_label.config(background='white', foreground='black')
-            style.configure('TEntry', fieldbackground='white')
+            top_frame.config(bg='lightgray')
+            root.configure(background='lightgray')
+            style.configure('TFrame', background='lightgray')
+            style.configure('TCheckbutton', background='lightgray', foreground='black')
+            style.configure('TButton', background='lightgray', foreground='black')
+            style.configure('TLabel', background='lightgray', foreground='black')
+            length_label.config(background='lightgray', foreground='black')
+            style.configure('TEntry', fieldbackground='lightgray')
 
-            scale.config(background='white', foreground='#1e1e1e', troughcolor='lightgray')
+            scale.config(background='lightgray', foreground='#1e1e1e', troughcolor='lightgray')
 
-            style.map('TCheckbutton', background=[('active', 'white'), ('selected', 'white')])
+            style.map('TCheckbutton', background=[('active', 'lightgray'), ('selected', 'lightgray')])
 
-            strength_label.config(background='white', foreground='black')
+            strength_label.config(background='lightgray', foreground='black')
             copy_button.config(background='#2196F3', foreground='white')
             save_button.config(background='#FF9800', foreground='white')
             main_frame.configure(style="TFrame")
@@ -250,7 +250,7 @@ def main():
         length=400,
         resolution=1,
         highlightthickness=0,
-        troughcolor='lightgray'
+        troughcolor='lightgray',
     )
     scale.pack(pady=(0, 10))
 
@@ -258,10 +258,11 @@ def main():
         main_frame,
         textvariable=length_var,
         font=("Arial", 12),
-        bg='white',
+        bg='lightgray',
         fg='black',
+        highlightthickness=0
     )
-    length_label.pack()
+    # length_label.pack()
 
     # Checkboxes
     ttk.Checkbutton(main_frame, text="Use Letters", variable=use_letters).pack(anchor='w')
@@ -355,20 +356,20 @@ def main():
     save_button.pack(pady=5)
 
     # Button Theme
-    top_frame = tk.Frame(main_frame, borderwidth=0, highlightthickness=0, bg='white')
-    top_frame.pack(fill='x', pady=(0, 15))
+    top_frame = tk.Frame(main_frame, borderwidth=0, highlightthickness=0, bg='lightgray')
+    top_frame.pack(pady=(0, 15))
 
     theme_toggle = tk.Button(
         top_frame,
         text="🌙 Dark Theme",
         command=toggle_theme,
-        font=('Arial', 10),
+        font=('Arial', 12),
         bg='#2196F3',
         fg='white',
         padx=10,
         pady=5,
     )
-    theme_toggle.pack(side='right', padx=5)
+    theme_toggle.pack(side='right')
 
     # Launch Window
     root.mainloop()
