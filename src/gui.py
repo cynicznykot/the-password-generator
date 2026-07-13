@@ -26,6 +26,7 @@ from src.config import APP_VERSION, GITHUB_API_URL
 
 
 def check_for_updates():
+    # Check for updates
     if os.path.exists("settings.json"):
         with open("settings.json", "r", encoding="utf-8") as f:
             data = json.load(f)
@@ -60,6 +61,7 @@ def check_for_updates():
 
 
 def save_dismiss_time():
+    # Time recording setting.json file
     now_time = datetime.now()
     save_time = now_time.strftime("%Y-%m-%d %H:%M:%S")
 
@@ -74,24 +76,24 @@ def main():
     root = tk.Tk()
     root.title("🔐 Personal Password Generator")
     root.geometry("700x650")
+    root.after(1000, check_for_updates)
     root.focus_set()
 
-
-    root.after(1000, check_for_updates)
     # Setting Styles
     style = ttk.Style()
-    style.configure('TLabel', font=('Arial', 12))
+    style.theme_use('clam')
 
+    style.configure('TLabel', font=('Arial', 12))
     style.configure('TButton', font=('Arial', 12), padding=5)
+
     # Main Frame
     main_frame = ttk.Frame(root, padding='20', borderwidth=0, relief='flat')
-
     main_frame.pack(fill='both', expand=True)
+
     # Headline
     title = ttk.Label(main_frame, text="🔐 Personal Password Generator", font=('Arial', 18, 'bold'))
-
-
     title.pack(pady=(0, 15))
+
     # Create Variables
     length_var = tk.IntVar(value=16)
     use_letters = tk.BooleanVar(value=True)
@@ -100,12 +102,11 @@ def main():
     password_var = tk.StringVar(value="")
     service_var = tk.StringVar(value="")
     login_var = tk.StringVar(value="")
-
-
-    theme_var = tk.StringVar(value='light')
+    theme_var = tk.StringVar(value='light')  # Change theme in func toggle_theme()
 
 
     def on_mouse_wheel(event):
+        # Change password length using the mouse wheel
         if event.widget in (entry_service, entry_email, entry_password):
             return
 
@@ -163,25 +164,28 @@ def main():
 
 
     def apply_theme(theme):
-        style = ttk.Style()
-
+        # Change user's light/dark theme
         if theme == 'light':
             top_frame.config(bg='#f0f0f0')
-            root.configure(background='#f0f0f0')
+            root.configure(bg='#f0f0f0')
             style.configure('TFrame', background='#f0f0f0')
+            style.configure('TLabel', background='#f0f0f0', foreground='black')
+            style.configure('TEntry', fieldbackground='#f0f0f0')
             style.configure('TCheckbutton', background='#f0f0f0', foreground='black')
             style.configure('TButton', background='#f0f0f0', foreground='black')
-            style.configure('TLabel', background='#f0f0f0', foreground='black')
             length_label.config(background='#f0f0f0', foreground='black')
-            style.configure('TEntry', fieldbackground='#f0f0f0')
 
-            scale.config(background='#f0f0f0', foreground='#1e1e1e', troughcolor='lightgray')
+            # Scale
+            scale.config(background='#f0f0f0', foreground='black', troughcolor='lightgray')
 
+            # Checkboxes
             style.map('TCheckbutton', background=[('active', '#f0f0f0'), ('selected', '#f0f0f0')])
 
+            # Manual widgets
             strength_label.config(background='#f0f0f0', foreground='black')
             copy_button.config(background='#2196F3', foreground='white')
             save_button.config(background='#FF9800', foreground='white')
+
             main_frame.configure(style="TFrame")
 
         if theme == 'dark':
@@ -191,7 +195,7 @@ def main():
             style.configure('TCheckbutton', background='#1e1e1e', foreground='white')
             style.configure('TLabel', background='#1e1e1e', foreground='white')
             length_label.config(background='#1e1e1e', foreground='white')
-            style.configure('TEntry', fieldbackground='#2d2d2d', foreground='white', insertcolor='white', highlightthickness=0)
+            style.configure('TEntry', fieldbackground='#2d2d2d', foreground='white', insertcolor='white')
 
             # Scale
             scale.config(background='#1e1e1e', foreground='white', troughcolor='#2b2b2b')
@@ -277,6 +281,7 @@ def main():
     )
     scale.pack(pady=(0, 10))
 
+    # Mouse wheel control linked to the main window
     root.bind("<MouseWheel>", on_mouse_wheel)
     root.bind("<Button-4>", on_mouse_wheel)
     root.bind("<Button-5>", on_mouse_wheel)
@@ -289,7 +294,6 @@ def main():
         fg='black',
         highlightthickness=0
     )
-    # length_label.pack()
 
     # Checkboxes
     ttk.Checkbutton(main_frame, text="Use Letters", variable=use_letters).pack(anchor='w')
@@ -354,9 +358,9 @@ def main():
         font=('Arial', 12, 'bold'),
         pady=5,
     )
-
     strength_label.pack()
 
+    # Copy Button
     copy_button = tk.Button(
         main_frame,
         text="📋 Copy to clipboard",
@@ -369,6 +373,7 @@ def main():
     )
     copy_button.pack(pady=5)
 
+    # Save Button
     save_button = tk.Button(
         main_frame,
         text="💾 Save the password to file",
@@ -379,10 +384,9 @@ def main():
         padx=15,
         pady=5,
     )
-
     save_button.pack(pady=5)
 
-    # Button Theme
+    # Button Change Theme
     top_frame = tk.Frame(main_frame, borderwidth=0, highlightthickness=0, bg='lightgray')
     top_frame.pack(pady=(0, 15))
 
@@ -399,6 +403,7 @@ def main():
     theme_toggle.pack(side='right')
 
     # Launch Window
+    apply_theme('light')
     root.mainloop()
 
 
